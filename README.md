@@ -20,7 +20,7 @@ To bring this project to life, we have identified the following technologies and
 
 ### AI and Machine Learning
 - **OpenAI/Cohere/Ollama LLM**: For story generation.
-- **DALL-E**: For generating representative story images.
+- **DALL-E/Cloudflare Workers AI**: For generating representative story images.
 
 ### Storage and Databases
 - **PostgreSQL**: To store stories and user-related data.
