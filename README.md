@@ -48,6 +48,7 @@ The application will provide the following features:
 4. **Additional Features**
    - A FAQ or Tips tab for guidance.
    - Integration of AI-generated images to visually represent stories.
+   - Users can include family members' names and their characteristics in stories, making them more engaging and personalized for children.
 
 ## Group Goals and Progress Plan
 Our primary goals for this project are as follows:
