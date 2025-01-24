@@ -96,11 +96,11 @@ We have divided the project timeline into the following phases and expect our ti
 
 ---
 #### Contributors | Group M
-Nic Grounds: Mentor
-Aksel Can Sozudogru: Sprint Master 1
-Linh Ngo: Sprint Master 2
-Nick Thompson: Sprint Master 3
-Vincent Tran: Sprint Master 4
-Julia Ketch: Product Owner
+Nic Grounds: Mentor <br>
+Aksel Can Sozudogru: Sprint Master 1 <br>
+Linh Ngo: Sprint Master 2 <br>
+Nick Thompson: Sprint Master 3 <br>
+Vincent Tran: Sprint Master 4 <br>
+Julia Ketch: Product Owner <br>
 
 
