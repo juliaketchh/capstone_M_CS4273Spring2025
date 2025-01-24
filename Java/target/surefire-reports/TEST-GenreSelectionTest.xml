@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="GenreSelectionTest" time="0.058" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\thesp\iCloudDrive\3_Education\3_UniversityOfOklahoma\7_Spring 2025\Capstone\Java\target\test-classes;C:\Users\thesp\iCloudDrive\3_Education\3_UniversityOfOklahoma\7_Spring 2025\Capstone\Java\target\classes;C:\Users\thesp\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.1\junit-jupiter-engine-5.8.1.jar;C:\Users\thesp\.m2\repository\org\junit\platform\junit-platform-engine\1.8.1\junit-platform-engine-1.8.1.jar;C:\Users\thesp\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\thesp\.m2\repository\org\junit\platform\junit-platform-commons\1.8.1\junit-platform-commons-1.8.1.jar;C:\Users\thesp\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.1\junit-jupiter-api-5.8.1.jar;C:\Users\thesp\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Chicago"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\thesp\AppData\Local\Temp\surefire1472580960997836580\surefirebooter2863391272526866834.jar C:\Users\thesp\AppData\Local\Temp\surefire1472580960997836580 2025-01-24T11-15-03_085-jvmRun1 surefire12048292077731496417tmp surefire_015078066565749305082tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\thesp\iCloudDrive\3_Education\3_UniversityOfOklahoma\7_Spring 2025\Capstone\Java\target\test-classes;C:\Users\thesp\iCloudDrive\3_Education\3_UniversityOfOklahoma\7_Spring 2025\Capstone\Java\target\classes;C:\Users\thesp\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.8.1\junit-jupiter-engine-5.8.1.jar;C:\Users\thesp\.m2\repository\org\junit\platform\junit-platform-engine\1.8.1\junit-platform-engine-1.8.1.jar;C:\Users\thesp\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\thesp\.m2\repository\org\junit\platform\junit-platform-commons\1.8.1\junit-platform-commons-1.8.1.jar;C:\Users\thesp\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.8.1\junit-jupiter-api-5.8.1.jar;C:\Users\thesp\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\thesp"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-09-19"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\thesp\iCloudDrive\3_Education\3_UniversityOfOklahoma\7_Spring 2025\Capstone\Java"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\thesp\AppData\Local\Temp\surefire1472580960997836580\surefirebooter2863391272526866834.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21+35-LTS-2513"/>
+    <property name="user.name" value="thesp"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\thesp\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\thesp\AppData\Local\Temp\"/>
+    <property name="java.version" value="21"/>
+    <property name="user.dir" value="C:\Users\thesp\iCloudDrive\3_Education\3_UniversityOfOklahoma\7_Spring 2025\Capstone\Java"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Java\jdk-21\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.6\libnvvp;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.3\libnvvp;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\PuTTY\;C:\Program Files\NVIDIA Corporation\Nsight Compute 2024.3.0\;C:\Users\thesp\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Tailscale\;C:\Program Files\Git\cmd;C:\Program Files\Go\bin;C:\Program Files\NVIDIA Corporation\NVIDIA app\NvDLISR;C:\Users\thesp\Downloads\apache-maven-3.9.9-bin\apache-maven-3.9.9\bin;C:\texlive\2024\bin\windows;C:\Users\thesp\AppData\Local\Programs\Python\Python38\Scripts\;C:\Users\thesp\AppData\Local\Programs\Python\Python38\;C:\Users\thesp\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\thesp\AppData\Local\Programs\Python\Python312\;C:\Users\thesp\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\thesp\AppData\Local\Programs\Python\Python311\;C:\Program Files\OpenSSL-Win64\bin;C:\Users\thesp\anaconda3\Library\mingw-w64\bin;C:\Users\thesp\anaconda3\Library\usr\bin;C:\Users\thesp\anaconda3\Library\bin;C:\Users\thesp\anaconda3\Scripts;C:\Users\thesp\AppData\Local\Microsoft\WindowsApps;C:\Users\thesp\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\thesp\AppData\Local\GitHubDesktop\bin;C:\Program Files\JetBrains\PyCharm 2023.2\bin;C:\msys64\mingw64\bin;C:\Users\thesp\.dotnet\tools;C:\Program Files\JetBrains\CLion 2023.2\bin;C:\Users\thesp\AppData\Local\gitkraken\bin;C:\Users\thesp\AppData\Roaming\npm;C:\Program Files\JetBrains\DataGrip 2023.3.3\bin;;C:\Program Files\JetBrains\DataSpell 2023.3.2\bin;;C:\Program Files\PostgreSQL\16\bin;C:\Program Files\PostgreSQL\16\lib;C:\Users\thesp\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Users\thesp\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe;C:\Users\thesp\AppData\Local\Programs\Ollama;C:\Program Files\Java\jdk-21\bin;C:\Program Files\Java\jdk-21\bin\javaw.exe;C:\Users\thesp\go\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21+35-LTS-2513"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="testOneGenreSelected" classname="GenreSelectionTest" time="0.037"/>
+  <testcase name="testMultipleGenresSelected" classname="GenreSelectionTest" time="0.001"/>
+  <testcase name="testInvalidGenreSelected" classname="GenreSelectionTest" time="0.002"/>
+  <testcase name="testNoGenreSelected" classname="GenreSelectionTest" time="0.002"/>
+</testsuite>
