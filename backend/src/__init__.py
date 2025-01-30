@@ -7,8 +7,8 @@ def create_app():
     app = Flask(__name__)
 
     # Register Blueprints (controllers)
-    app.register_blueprint(story_bp, url_prefix='/story')
-    app.register_blueprint(user_bp, url_prefix='/user')
-    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(story_bp, url_prefix='/api/story')
+    app.register_blueprint(user_bp, url_prefix='/api/user')
+    app.register_blueprint(auth_bp, url_prefix='/api/auth')
 
     return app
