@@ -1,0 +1,9 @@
+1. need to save chat history
+2. need to save uuid (unique user id)
+3. need to save story id
+4. A story id can have a story and a title
+5. story id are tied to uuid
+6. a story id can have 0 or more genres, characters, perspectives, and tones
+7. characters can have identifying information such as names, age, and description
+8. a story can have an image
+9. a character may be a protagonist
