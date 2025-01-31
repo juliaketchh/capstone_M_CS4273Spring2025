@@ -1,15 +1,15 @@
 from flask import Blueprint, request
 from src.service.story_service import StoryService
-from src.service.ollama_service import OllamaService
+from src.service.llm_service import create_llm_service
 from src.util.response import success_response, error_response
 
 story_bp = Blueprint("story_bp", __name__)
 story_service = StoryService()
-ollama_service = OllamaService()
+llm_service = create_llm_service("ollama")  # Change "ollama" to "cohere" to switch models
 
 @story_bp.route("/surprise/me", methods=["GET"])
 def generate_random_story():
-    story: str = ollama_service.generate_random_story()
+    story: str = llm_service.generate_random_story()
     return success_response({"text": story})
 
 @story_bp.route("/test", methods=["GET"])
