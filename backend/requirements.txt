@@ -2,3 +2,4 @@ flask
 ollama
 Flask-SQLAlchemy
 python-dotenv
+cohere
