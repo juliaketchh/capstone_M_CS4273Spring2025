@@ -51,6 +51,7 @@ class TestOllamaService(unittest.TestCase):
         story = service.generate_random_story()
 
         print(story)
+        self.assertIsNotNone(story)
 
 if __name__ == '__main__':
     unittest.main()
