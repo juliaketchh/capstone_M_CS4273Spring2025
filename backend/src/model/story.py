@@ -5,6 +5,7 @@ from src.model.story_tone import StoryTone
 from src.model.story_series import StorySeries
 from src.model.genre import Genre
 from src.model.story_character import StoryCharacter
+from src.model.user import User
 
 class Story(db.Model):
     __tablename__ = 'story'

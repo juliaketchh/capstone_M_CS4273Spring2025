@@ -1,4 +1,5 @@
 from src.database.database import db
+from src.model.series import Series
 
 class StorySeries(db.Model):
     __tablename__ = 'story_series'
