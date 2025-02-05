@@ -1,4 +1,10 @@
 from src.database.database import db
+from src.model.story_genre import StoryGenre
+from src.model.story_theme import StoryTheme
+from src.model.story_tone import StoryTone
+from src.model.story_series import StorySeries
+from src.model.genre import Genre
+from src.model.story_character import StoryCharacter
 
 class Story(db.Model):
     __tablename__ = 'story'
@@ -17,5 +23,22 @@ class Story(db.Model):
     characters = db.relationship('StoryCharacter', backref='story', lazy=True)
     series = db.relationship('StorySeries', backref='story', lazy=True)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'title': self.title,
+            'perspective': self.perspective,
+            'content': self.content,
+            'exposition': self.exposition,
+            'protagonist_id': self.protagonist_id,
+            'image': self.image,
+            'genres': [genre.genre for genre in self.genres],
+            'themes': [theme.theme for theme in self.themes],
+            'tones': [tone.tone for tone in self.tones],
+            'characters': [{'name': character.name, 'description': character.description, 'age': character.age} for character in self.characters],
+            'series': [{'series_id': series.series_id, 'sequence_num': series.sequence_num} for series in self.series]
+        }
+
     def __repr__(self):
-        return f"<Story {self.id} - {self.protagonist_name}>"
+        return f"<Story {self.id} - {self.title}>"

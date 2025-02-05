@@ -20,18 +20,20 @@ def test():
 def create_story():
     data = request.json
     story = story_service.create_story(data)
-    return success_response(story.__dict__, message="Story created", status_code=201)
+    return success_response(story.to_dict(), message="Story created", status_code=201)
 
-@story_bp.route("/", methods=["GET"])
-def get_stories():
-    stories = story_service.get_stories()
-    return success_response([story.__dict__ for story in stories])
+@story_bp.route("/user/<user_id>", methods=["GET"])
+def get_user_stories(user_id):
+    stories = story_service.get_user_stories(user_id)
+    if not stories:
+        return error_response("No stories found", status_code=404)
+    return success_response([story.to_dict() for story in stories])
 
 @story_bp.route("/<story_id>", methods=["GET"])
 def get_story(story_id):
     story = story_service.get_story(story_id)
     if story:
-        return success_response(story.__dict__)
+        return success_response(story.to_dict())
     return error_response("Story not found", status_code=404)
 
 @story_bp.route("/<story_id>", methods=["PUT"])
@@ -39,7 +41,7 @@ def update_story(story_id):
     data = request.json
     story = story_service.update_story(story_id, data)
     if story:
-        return success_response(story.__dict__, message="Story updated")
+        return success_response(story.to_dict(), message="Story updated")
     return error_response("Story not found", status_code=404)
 
 @story_bp.route("/<story_id>", methods=["DELETE"])

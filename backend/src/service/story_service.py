@@ -7,8 +7,8 @@ class StoryService:
     def create_story(self, data):
         return self.repository.create_story(data)
 
-    def get_stories(self):
-        return self.repository.get_all_stories()
+    def get_user_stories(self, user_id: int) -> list:
+        return self.repository.get_stories_by_user_id(user_id)
 
     def get_story(self, story_id):
         return self.repository.get_story_by_id(story_id)

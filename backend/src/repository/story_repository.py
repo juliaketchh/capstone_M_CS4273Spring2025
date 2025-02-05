@@ -1,28 +1,26 @@
-import uuid
 from src.database.database import db
 from src.model.story import Story
 
 class StoryRepository:
     @staticmethod
     def create_story(data):
-        story_id = str(uuid.uuid4())
         story = Story(
-            id=story_id,
+            id=data.get("id"),
+            user_id=data["user_id"],
             title=data["title"],
-            genre=data["genre"],
             perspective=data["perspective"],
-            tone=data["tone"],
             content=data["content"],
+            exposition=data.get("exposition"),
+            protagonist_id=data.get("protagonist_id"),
             image=data.get("image"),
-            series=data.get("series"),
         )
         db.session.add(story)
         db.session.commit()
         return story
 
     @staticmethod
-    def get_all_stories():
-        return Story.query.all()
+    def get_stories_by_user_id(user_id):
+        return Story.query.filter_by(user_id=user_id).all()
 
     @staticmethod
     def get_story_by_id(story_id):

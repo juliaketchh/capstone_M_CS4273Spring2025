@@ -8,7 +8,7 @@ def init_db(app, test=False) -> None:
     load_dotenv()
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URI')
 
-    if app.config['SQLALCHEMY_DATABASE_URI'] == None:
+    if app.config['SQLALCHEMY_DATABASE_URI'] is None:
         print("Error: connection string not found")
         return
     
