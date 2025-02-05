@@ -1,12 +1,13 @@
 import cohere
 import dotenv
 from os.path import dirname, join
+from os import getenv
 
 backend_directory = dirname(dirname(dirname(__file__)))
 dotenv.load_dotenv(join(backend_directory, ".env"))
 class CohereService:
     def __init__(self):
-        self.co = cohere.ClientV2(api_key="8wo4mzxsPl5r51MrdCD5sLsQXBO470QkuHyYhn4s")
+        self.co = cohere.ClientV2(api_key=getenv("COHERE_API_KEY"))
 
     def generate_story(self, genre, perspective, tone, protagonist_name):
         # Customize the prompt based on user input
