@@ -27,10 +27,5 @@ class TestDatabaseInit(unittest.TestCase):
             engine = db.engine
             self.assertTrue(engine)
 
-    def tearDown(self):
-        """Drop all tables after each test to ensure a clean state."""
-        with self.app.app_context():
-            db.drop_all()
-
 if __name__ == "__main__":
     unittest.main()
