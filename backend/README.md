@@ -4,6 +4,20 @@ Ollama to run the story generation AI.
 
 ## Setup instructions
 
+Create .env file in the `backend\src\database` folder with the following format:
+
+```
+DATABASE_URI={your connection string}
+```
+
+And .env file in the `backend` folder with the following format:
+
+```
+COHERE_API_KEY={api key}
+```
+
+Replacing the bracketed item with the correct value.
+
 Make sure `backend` is your working directory then run
 `pip install -r requirements.txt`
 Then run
