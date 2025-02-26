@@ -1,11 +1,13 @@
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import os
+from os.path import join, dirname
 
 db = SQLAlchemy()
 
 def init_db(app, config=None, test=False) -> None:
-    load_dotenv()
+    backend_directory = dirname(dirname(dirname(__file__)))
+    load_dotenv(join(backend_directory, ".env"))
     if config:
         app.config.from_object(config)
     else:
