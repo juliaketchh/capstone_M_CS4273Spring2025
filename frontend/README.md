@@ -1,1 +1,1 @@
-Vue or React
+trying to make new frontend
