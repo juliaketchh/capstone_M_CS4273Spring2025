@@ -24,7 +24,10 @@ class WorkersAi:
             "Conent-Type": "image/jpg"
         }
         url = f'https://api.cloudflare.com/client/v4/accounts/{self.account_id}/ai/run/@cf/lykon/dreamshaper-8-lcm'
-        payload = { "prompt": description }
+        payload = { "prompt": description,
+                    "negative_prompt": "weapons, violence, blood, gore, death",
+                    "guidance": 1
+                    }
         json_payload = json.dumps(payload)
         result = requests.post(url=url, data=json_payload, headers=header)
         image_bytes = result.content
