@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, send_file
 from src.service.story_service import StoryService
 from src.service.llm_service import create_llm_service
 from src.util.response import success_response, error_response
@@ -49,3 +49,36 @@ def delete_story(story_id):
     if story_service.delete_story(story_id):
         return success_response({"message": "Story deleted"})
     return error_response("Story not found", status_code=404)
+
+@story_bp.route("/thumbnail/get/<story_id>", methods=["GET"])
+def get_story_thumbnail(story_id):
+    story = story_service.get_story(story_id)
+    if not story:
+        return error_response("Story not found", status_code=404)
+    
+    image = story_service.get_story_thumbnail(story_id)
+    if image:
+        return send_file(image, mimetype="image/jpg")
+    return error_response("Thumbnail not found", status_code=404)
+
+@story_bp.route("/thumbnail/new/<story_id>", methods=["GET"])
+def get_new_story_thumbnail(story_id):
+    story = story_service.get_story(story_id)
+    if not story:
+        return error_response("Story not found", status_code=404)
+    
+    image = story_service.create_story_thumbnail(story_id=story_id)
+    if image:
+        return send_file(image, mimetype="image/jpg")
+    return error_response("Thumbnail not found", status_code=404)
+
+@story_bp.route("/thumbnail/update/<story_id>", methods=["GET"])
+def update_story_thumbnail(story_id):
+    story = story_service.get_story(story_id)
+    if not story:
+        return error_response("Story not found", status_code=404)
+    
+    image = story_service.update_story_thumbnail(story_id=story_id)
+    if image:
+        return send_file(image, mimetype="image/jpg")
+    return error_response("Thumbnail not found", status_code=404)
