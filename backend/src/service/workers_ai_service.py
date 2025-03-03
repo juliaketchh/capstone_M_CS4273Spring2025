@@ -1,6 +1,6 @@
 import dotenv
-from os.path import dirname, join
-from os import getenv
+from os.path import dirname, join, abspath
+from os import getenv, makedirs
 import requests
 import json
 from PIL import Image
@@ -16,6 +16,7 @@ class WorkersAi:
     def __init__(self):
         self.account_id = getenv("CLOUDFLARE_ACCOUNT_ID")
         self.api_token = getenv("CLOUDFLARE_API_TOKEN")
+        self.defaut_save_directory = abspath(join(backend_directory, "src", "assets", "images", "temp"))
 
     def create_image_by_description(self, description:str) -> bytes:
         header = {
@@ -33,3 +34,12 @@ class WorkersAi:
     def render_image_from_bytes(self, bytes) -> None:
         image = Image.open(BytesIO(bytes))
         image.show()
+
+    def save_image_to_file(self, bytes, filename, save_directory="") -> str:
+        image = Image.open(BytesIO(bytes))
+        if not save_directory:
+            save_directory = self.defaut_save_directory
+        makedirs(save_directory, exist_ok = True)
+        save_path = join(save_directory, filename)
+        image.save(save_path)
+        return save_path

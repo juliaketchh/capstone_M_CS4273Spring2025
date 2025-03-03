@@ -16,7 +16,6 @@ class Story(db.Model):
     content = db.Column(db.Text, nullable=False)
     exposition = db.Column(db.Text)
     protagonist_id = db.Column(db.Integer)
-    image = db.Column(db.LargeBinary)
 
     genres = db.relationship('Genre', secondary='story_genre', backref='stories')
     themes = db.relationship('StoryTheme', backref='story', lazy=True)
@@ -33,7 +32,6 @@ class Story(db.Model):
             'content': self.content,
             'exposition': self.exposition,
             'protagonist_id': self.protagonist_id,
-            'image': self.image,
             'genres': [genre.genre for genre in self.genres],
             'themes': [theme.theme for theme in self.themes],
             'tones': [tone.tone for tone in self.tones],
