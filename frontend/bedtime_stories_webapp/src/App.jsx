@@ -8,9 +8,7 @@ function App() {
     <>
       <h1>User's Bedtime Stories</h1>
       <div className="card">
-      <button class="button"> 
-          Story Library
-        </button>
+      <a href="library.html" class="button">Story Library</a>
         <div class="divider"/>
         <button class="button"> 
           Character Editor
