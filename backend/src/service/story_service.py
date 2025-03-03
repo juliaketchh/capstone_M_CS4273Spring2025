@@ -2,7 +2,7 @@ from src.repository.story_repository import StoryRepository
 from src.service.workers_ai_service import WorkersAi
 from flask import send_from_directory
 from os.path import join, exists, abspath, dirname
-from os import rename, makedirs
+from os import rename, makedirs, remove
 
 class StoryService:
     def __init__(self):
@@ -43,7 +43,7 @@ class StoryService:
         temp_image_path = join(self.images_directory, "temp", image_filename)
         if exists(temp_image_path):
             new_image_path = join(self.images_directory, "thumbnails", image_filename)
-            print(new_image_path)
+            remove(new_image_path) if exists(new_image_path) else None
             rename(temp_image_path, new_image_path)
             return new_image_path
         return ""
