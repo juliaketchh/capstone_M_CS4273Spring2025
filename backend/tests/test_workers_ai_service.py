@@ -1,4 +1,6 @@
 import unittest
+from os.path import exists
+from os import remove
 from src.service.workers_ai_service import WorkersAi
 
 class TestWorkersAiService(unittest.TestCase):
@@ -11,3 +13,11 @@ class TestWorkersAiService(unittest.TestCase):
         image_bytes = self.workers_ai_service.create_image_by_description(description)
 
         self.assertIsNotNone(image_bytes)
+
+    def test_save_image_to_file(self):
+        image_bytes = self.workers_ai_service.create_image_by_description("a lovely duck")
+        filename = "temp.jpg"
+        self.workers_ai_service.save_image_to_file(image_bytes, filename)
+
+        self.assertTrue(exists(f"src/assets/images/temp/{filename}"))
+        remove(f"src/assets/images/temp/{filename}")
