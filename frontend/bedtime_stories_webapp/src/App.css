@@ -37,6 +37,14 @@
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+
+.divider{
+  width:5px;
+  height:auto;
+  display:inline-block;
+}
+
+.button {
+  background-color: black;
+  opacity: 0.33;
 }
