@@ -21,3 +21,7 @@ class TestWorkersAiService(unittest.TestCase):
 
         self.assertTrue(exists(f"src/assets/images/temp/{filename}"))
         remove(f"src/assets/images/temp/{filename}")
+
+    def test_empty_description_image_generation(self):
+        image_bytes = self.workers_ai_service.create_image_by_description("")
+        self.assertEqual(image_bytes, "".encode())
