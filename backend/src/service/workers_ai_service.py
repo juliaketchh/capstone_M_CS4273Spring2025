@@ -19,6 +19,9 @@ class WorkersAi:
         self.defaut_save_directory = abspath(join(backend_directory, "src", "assets", "images", "temp"))
 
     def create_image_by_description(self, description:str) -> bytes:
+        if not description:
+            return "".encode()
+        
         header = {
             "Authorization": f'Bearer {self.api_token}',
             "Conent-Type": "image/jpg"

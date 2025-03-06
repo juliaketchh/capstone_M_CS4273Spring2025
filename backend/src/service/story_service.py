@@ -34,6 +34,8 @@ class StoryService:
         # image stored in temp directory
         description = self.repository.get_story_exposition_by_id(story_id)
         image = self.image_generation_service.create_image_by_description(description=description)
+        if image == "".encode():
+            return ""
         path = self.image_generation_service.save_image_to_file(image, f"{story_id}.jpg")
         return path
     
