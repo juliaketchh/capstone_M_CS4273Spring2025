@@ -6,16 +6,20 @@ function App() {
 
   return (
     <>
-      <h1>User's Bedtime Stories</h1>
+      <h1>User's Bedtime Stories </h1>
       <div className="card">
       <a href="library.html" class="button">Story Library</a>
         <div class="divider"/>
         <button class="button"> 
           Character Editor
-        </button>
+        </button> 
         <div class="divider"/>
         <button class="button"> 
           Story Settings
+        </button>
+        <div class="divider"/>
+        <button class="button"> 
+        <a href="generate_story.html" class="button">Story Library</a>
         </button>
       </div>
 
