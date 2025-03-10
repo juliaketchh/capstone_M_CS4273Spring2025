@@ -44,3 +44,10 @@ class StoryRepository:
             db.session.commit()
             return True
         return False
+    
+    @staticmethod
+    def get_story_exposition_by_id(story_id):
+        story = Story.query.get(story_id)
+        if story:
+            return getattr(story, "exposition")
+        return ""
