@@ -86,7 +86,7 @@ class TestOllamaService(unittest.TestCase):
 
         print("\nFull Generated Story from Ollama:\n", story)
         self.assertIsNotNone(story)
-#
+##
 
 if __name__ == '__main__':
     unittest.main()
