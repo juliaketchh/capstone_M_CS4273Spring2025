@@ -12,4 +12,6 @@ Then run
 ## Testing
 
 Make sure `backend` is your working directory then run
-```python -m unittest```
+```python -m unittest``` 
+
+python3 -m unittest tests/test_ollama_service_test.py
