@@ -3,4 +3,3 @@ ollama
 Flask-SQLAlchemy
 python-dotenv
 cohere
-google-cloud-run
