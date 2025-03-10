@@ -17,6 +17,10 @@ function App() {
         <button class="button"> 
           Story Settings
         </button>
+        <div class="divider"/>
+        <button class="button"> 
+        <a href="generate_story.html" class="button">Generate Story</a>
+        </button>
       </div>
 
     </>
