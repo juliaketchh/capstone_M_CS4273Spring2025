@@ -15,7 +15,11 @@ function App() {
         </button>
         <div class="divider"/>
         <button class="button"> 
+<<<<<<< HEAD
           Story Settings
+=======
+        <a href="generate_story.html" class="button">Generate Story</a>
+>>>>>>> fdb050a (Updated App.jsx and added library.html new1)
         </button>
       </div>
 
