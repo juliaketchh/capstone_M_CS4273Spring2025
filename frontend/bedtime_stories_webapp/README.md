@@ -1,4 +1,7 @@
-# React + Vite
+index.html is the landing page for the webapp. please edit app.jsx to edit the page. app.css is helpful for creating reusable elements for the pages.
+
+
+React + Vite resources: 
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
