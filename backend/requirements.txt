@@ -3,3 +3,4 @@ ollama
 Flask-SQLAlchemy
 python-dotenv
 cohere
+psycopg2
