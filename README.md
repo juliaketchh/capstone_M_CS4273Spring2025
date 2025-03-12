@@ -14,13 +14,13 @@ Additionally, users will have the option to extend stories, such as creating a s
 To bring this project to life, we have identified the following technologies and tools:
 
 ### Programming Languages and Frameworks
-- **Python Flask/Django**: For backend development and API implementation.
+- **Python Flask**: For backend development and API implementation.
 - **HTML/CSS/JavaScript**: For building and styling the frontend.
 - **React**: For creating a dynamic and user-friendly interface.
 
 ### AI and Machine Learning
-- **OpenAI/Cohere/Ollama LLM**: For story generation.
-- **DALL-E/Cloudflare Workers AI**: For generating representative story images.
+- **Cohere/Ollama LLM**: For story generation.
+- **Cloudflare Workers AI**: For generating representative story images.
 
 ### Storage and Databases
 - **PostgreSQL**: To store stories and user-related data.
@@ -94,6 +94,13 @@ We have divided the project timeline into the following phases and expect our ti
 #### Phase 5: Final Presentation (Week 13)
 - Prepare documentation and project presentation materials.
 - Demonstrate the application’s features and functionality.
+
+### Progress
+- Designs have been created using Figma and we are currently working on building it out with React
+- The backend has been set up and we will continue to create new API endpoints as needed while we develop the UI
+
+## Setup Instructions
+Please navigate to the individual folders backend and frontend. Follow instructions in respective directories to run the application.
 
 ---
 #### Contributors | Group M
