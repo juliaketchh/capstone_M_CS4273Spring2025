@@ -21,6 +21,8 @@ Replacing the bracketed item with the correct value.
 3. Then run
 `python app.py`
 
+4. The API can be found at localhost:5000
+
 ## Testing
 
 Make sure `backend` is your working directory then run
@@ -28,3 +30,8 @@ Make sure `backend` is your working directory then run
 
 To test specific files, run
 ```python -m unittest test.test_file_name```
+
+## Usage
+
+All APIs are found at localhost:5000/api/* where the path immediately following api is the name of a controller.
+Controller acts as routes of the API. Controller uses services which contain the business logic. Services use repositories to interact with database. Models are relation tables as code.
