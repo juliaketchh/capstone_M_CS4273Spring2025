@@ -23,6 +23,11 @@ Replacing the bracketed item with the correct value.
 
 4. The API can be found at localhost:5000
 
+5. Install ollama client from `https://github.com/ollama/ollama`
+
+6. Download the deepseek model by running the following in a terminal
+`ollama pull deepseek-r1:1.5b`
+
 ## Testing
 
 Make sure `backend` is your working directory then run
