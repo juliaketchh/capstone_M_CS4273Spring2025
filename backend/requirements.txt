@@ -4,3 +4,4 @@ Flask-SQLAlchemy
 python-dotenv
 cohere
 psycopg2
+flask-cors
