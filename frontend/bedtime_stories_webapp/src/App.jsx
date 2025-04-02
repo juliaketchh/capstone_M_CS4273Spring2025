@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import './App.css'
+import Header from './Header'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <Header /> {/* ← This line adds your header! */}
+      
       <h1>User's Bedtime Stories</h1>
       <div className="card">
       <a href="library.html" class="button">Story Library</a>
