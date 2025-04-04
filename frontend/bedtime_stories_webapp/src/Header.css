@@ -7,8 +7,8 @@
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: fixed;
     top: 0;
-    left: 0;                 /* <-- add this */
-    width: 100vw;            /* <-- full viewport width */
+    left: 0;                 
+    width: 100vw;            /* <-- full viewport width part*/
     z-index: 1000;
     height: 80px;
     box-sizing: border-box; /* <-- important for padding */
