@@ -4,6 +4,8 @@ import Header from '../components/Header'
 import CharEdit from '../components/char_edit.jsx';
 import StoryLibrary from '../components/library.jsx';
 import StoryGenerate from '../components/generate.jsx';
+import './App.css'
+import Library from './pages/Library'
 
 function App() {
   // 'menu'   = main menu
