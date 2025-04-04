@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-      <Header /> {/* ← This line adds new header! */}
+      <Header /> {/* This part adds new header */}
       
       <h1>User's Bedtime Stories</h1>
       <div className="card">
