@@ -1,8 +1,25 @@
 import { useState } from 'react'
 import './App.css'
+import Library from './pages/Library'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [view, setView] = useState('home')
+
+  if (view === 'home') {
+    return (
+      <>
+        <h1>Bedtime Stories</h1>
+        <p>
+          <button onClick={() => setView('library')}>Library</button>
+        </p>
+      </>
+    )
+  }
+
+  if (view === 'library') {
+    return <Library />
+  }
 
   return (
     <>
