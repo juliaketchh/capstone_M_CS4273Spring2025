@@ -12,70 +12,56 @@ function App() {
   // 'generate' = story generator
   const [view, setView] = useState('menu');
 
-  // Decide what to render based on the current view
-  switch (view) {
-    case 'edit':
-      return (
-        <>
-          <Header />
-          <CharEdit onClose={() => setView('menu')} />
-        </>
-      );
+  return (
+    <>
+      <Header navigate={setView} />
 
-    case 'library':
-      return (
-        <>
-          <Header />
-          <StoryLibrary onClose={() => setView('menu')} />
-        </>
-      );
+      {view === 'menu' && (
+        <MainMenu navigate={setView} />
+      )}
 
-    case 'generate':
-      return (
-        <>
-          <Header />
-          <StoryGenerate onClose={() => setView('menu')} />
-        </>
-      );
+      {view === 'edit'     && (
+        <CharEdit onClose={() => setView('menu')} />
+      )}
 
-    default: // 'menu'
-      return (
-        <>
-          <Header />
+      {view === 'library' && (
+        <StoryLibrary onClose={() => setView('menu')} />
+      )}
 
-          <h1>User&#39;s Bedtime Stories</h1>
-
-          <div className="card">
-            <div className="divider" />
-
-            <button
-              className="button"
-              onClick={() => setView('edit')}
-            >
-              Character Editor
-            </button>
-
-            <div className="divider" />
-
-            <button
-              className="button"
-              onClick={() => setView('library')}
-            >
-              Story Library
-            </button>
-
-            <div className="divider" />
-
-            <button
-              className="button"
-              onClick={() => setView('generate')}
-            >
-              Generate Story
-            </button>
-          </div>
-        </>
-      );
-  }
+      {view === 'generate' && (
+        <StoryGenerate onClose={() => setView('menu')} />
+      )}
+    </>
+  );
 }
+
+function MainMenu({ navigate }) {
+  return (
+    <>
+      <h1>User&#39;s Bedtime Stories</h1>
+
+      <div className="card">
+        <div className="divider" />
+
+        <button className="button" onClick={() => navigate('edit')}>
+          Character Editor
+        </button>
+
+        <div className="divider" />
+
+        <button className="button" onClick={() => navigate('library')}>
+          Story Library
+        </button>
+
+        <div className="divider" />
+
+        <button className="button" onClick={() => navigate('generate')}>
+          Generate Story
+        </button>
+      </div>
+    </>
+  );
+}
+
 
 export default App;

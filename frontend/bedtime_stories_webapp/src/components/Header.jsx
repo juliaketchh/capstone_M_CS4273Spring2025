@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../styles/Header.css'
 
-function Header() {
+function Header({ navigate }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -17,12 +17,26 @@ function Header() {
         </div>
 
         <nav className="nav-links">
-          <a href="/">Home</a>
-          <a href="/library.html">Story Library</a>
-          <a href="#">Character Editor</a>
-          <a href="#">Story Settings</a>
-          <a href="/generate_story.html">Generate Story</a>
-        </nav>
+          <a href="#" onClick={e => { e.preventDefault(); navigate('menu'); }}>
+          Home
+        </a>
+
+        <a href="#" onClick={e => { e.preventDefault(); navigate('library'); }}>
+          Story Library
+        </a>
+
+        <a href="#" onClick={e => { e.preventDefault(); navigate('edit'); }}>
+          Character Editor
+        </a>
+
+        <a href="#" onClick={e => { e.preventDefault(); navigate('settings'); }}>
+          Story Settings
+        </a>
+
+        <a href="#" onClick={e => { e.preventDefault(); navigate('generate'); }}>
+          Generate Story
+        </a>
+      </nav>
 
         <div className="search-bar">
           {/* <span className="search-icon">🔍</span> */}
