@@ -1,32 +1,81 @@
 import { useState } from 'react'
 import '../styles/App.css'
 import Header from '../components/Header'
+import CharEdit from '../components/char_edit.jsx';
+import StoryLibrary from '../components/library.jsx';
+import StoryGenerate from '../components/generate.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  // 'menu'   = main menu
+  // 'edit'   = character editor
+  // 'library' = story library
+  // 'generate' = story generator
+  const [view, setView] = useState('menu');
 
-  return (
-    <>
-      <Header /> {/* This part adds new header */}
-      
-      <h1>User's Bedtime Stories</h1>
-      <div className="card">
-        <div class="divider"/>
-        <button class="button"> 
-          Character Editor
-        </button>
-        <div class="divider"/>
-        <button class="button"> 
-          Story Settings
-        </button>
-        <div class="divider"/>
-        <button class="button"> 
-          Generate Story
-        </button>
-      </div>
+  // Decide what to render based on the current view
+  switch (view) {
+    case 'edit':
+      return (
+        <>
+          <Header />
+          <CharEdit onClose={() => setView('menu')} />
+        </>
+      );
 
-    </>
-  )
+    case 'library':
+      return (
+        <>
+          <Header />
+          <StoryLibrary onClose={() => setView('menu')} />
+        </>
+      );
+
+    case 'generate':
+      return (
+        <>
+          <Header />
+          <StoryGenerate onClose={() => setView('menu')} />
+        </>
+      );
+
+    default: // 'menu'
+      return (
+        <>
+          <Header />
+
+          <h1>User&#39;s Bedtime Stories</h1>
+
+          <div className="card">
+            <div className="divider" />
+
+            <button
+              className="button"
+              onClick={() => setView('edit')}
+            >
+              Character Editor
+            </button>
+
+            <div className="divider" />
+
+            <button
+              className="button"
+              onClick={() => setView('library')}
+            >
+              Story Library
+            </button>
+
+            <div className="divider" />
+
+            <button
+              className="button"
+              onClick={() => setView('generate')}
+            >
+              Generate Story
+            </button>
+          </div>
+        </>
+      );
+  }
 }
 
-export default App
+export default App;
