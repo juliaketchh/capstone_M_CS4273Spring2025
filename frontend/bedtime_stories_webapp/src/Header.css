@@ -1,0 +1,126 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    left: 0;                 
+    width: 100vw;            /* full viewport width part*/
+    z-index: 1000;
+    height: 80px;
+    box-sizing: border-box; /* important for padding */
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-links a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+  
+  .nav-links a:hover {
+    color: #444;
+  }
+  
+  .search-bar {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 2rem;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.6rem 1rem 0.6rem 2.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .search-bar input::placeholder {
+    color: #888;
+  }
+  
+  .search-bar input:focus {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-icon {
+    position: absolute;
+    margin-left: 10px;
+    font-size: 1.1rem;
+    color: #888;
+    pointer-events: none;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  /* Hamburger icon */
+  .hamburger-icon {
+    width: 24px;
+    height: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .hamburger-icon span {
+    height: 3px;
+    background-color: #000;
+    border-radius: 2px;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 1.5rem 1rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar li {
+    margin: 1rem 0;
+  }
+  
+  .sidebar a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+  }
