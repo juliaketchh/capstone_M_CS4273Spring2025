@@ -13,7 +13,7 @@ function Header() {
             <span></span>
             <span></span>
           </div>
-          <div className="logo">📚</div>
+          <div className="logo">📚 </div>
         </div>
 
         <nav className="nav-links">
@@ -25,8 +25,8 @@ function Header() {
         </nav>
 
         <div className="search-bar">
-          <span className="search-icon">🔍</span>
-          <input type="text" placeholder="Search stories..." />
+          {/* <span className="search-icon">🔍</span> */}
+          <input type="text" placeholder="Search stories" />
         </div>
       </header>
 
