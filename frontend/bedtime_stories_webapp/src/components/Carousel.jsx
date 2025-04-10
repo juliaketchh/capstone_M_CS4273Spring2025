@@ -42,14 +42,18 @@ export default function CustomCarousel({ items }) {
         itemClass="carousel-item-padding-40-px"
       >
         {items.map((item, index) => (
-          <div key={index} className="carousel-item">
+          <div 
+            key={index} 
+            className="carousel-item" 
+            onClick={() => console.log(`Clicked on: ${item.title}`, item)}
+            style={{ cursor: "pointer" }}
+          >
             <img 
               src={item.thumbnail || "placeholder-thumbnail.jpg"} 
               alt={item.title || "Story Thumbnail"} 
               className="carousel-thumbnail"
               style={{ width: "80%", height: "50%", borderRadius: "16px" }}
             />
-
             <div>{item.title}</div>
           </div>
         ))}
