@@ -22,14 +22,14 @@ const responsive = {
 
 export default function CustomCarousel({ items }) {
   return (
-    <div style={{ paddingBottom: '50px', position: 'relative' }}>
+    <div style={{ paddingBottom: '50px', position: 'relative', width: '100%' }}>
       <Carousel
         swipeable={true}
         draggable={true}
         showDots={true}
         renderDotsOutside={true}
         responsive={responsive}
-        ssr={true}
+        ssr={false}
         infinite={true}
         autoPlay={true}
         autoPlaySpeed={4000}
@@ -43,22 +43,28 @@ export default function CustomCarousel({ items }) {
       >
         {items.map((item, index) => (
           <div 
-            key={index} 
+            key={item.id || index} 
             className="carousel-item" 
+            role="button"
+            tabIndex={0}
             onClick={() => console.log(`Clicked on: ${item.title}`, item)}
-            style={{ cursor: "pointer" }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                console.log(`Clicked on: ${item.title}`, item);
+              }
+            }}
+            style={{ cursor: "pointer", width: "100%" }}
           >
             <img 
               src={item.thumbnail || "placeholder-thumbnail.jpg"} 
               alt={item.title || "Story Thumbnail"} 
               className="carousel-thumbnail"
-              style={{ width: "80%", height: "50%", borderRadius: "16px" }}
+              style={{ width: "80%", height: "auto", borderRadius: "16px" }}
             />
-            <div>{item.title}</div>
+            <div style={{ color: "black" }}>{item.title}</div>
           </div>
         ))}
       </Carousel>
     </div>
-    
   );
 }

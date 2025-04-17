@@ -10,7 +10,7 @@ export default function AllStories({ stories }) {
     <Stack spacing="md">
       <Group position="apart">
         <Title order={3}>All Stories</Title>
-        <Group>
+        <Group position="right">
           <ActionIcon variant="filled" color="blue">
             <FiDownload size={18} />
           </ActionIcon>
@@ -21,29 +21,19 @@ export default function AllStories({ stories }) {
       </Group>
 
       <Divider />
-
-      {stories.map((story) => (
-        <Card
-          key={story.id}
-          shadow="sm"
-          p="md"
-          radius="md"
-          withBorder
-          sx={(theme) => ({
-            transition: "transform 0.2s ease",
-            "&:hover": { transform: "scale(1.02)" },
-            backgroundColor: theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.white,
-          })}
-        >
-          <Group position="apart">
-            <Text weight={600}>{story.title}</Text>
+      <div className="stories-list" style={{ backgroundColor: "#F9ECCC" }}>
+        {stories.map((story) => (
+          <div key={story.id} className="story-item" style={{ marginBottom: "16px" }} align="flex-start">
             <ActionIcon variant="subtle" color="yellow">
               <FiStar size={18} />
             </ActionIcon>
-          </Group>
-          <Text size="sm" color="dimmed" mt="xs">{story.exposition}</Text>
-        </Card>
-      ))}
+            <div style={{ flex: 1 }}>
+              <Text weight={600} style={{ color: "black", textAlign: "left", paddingLeft: "16px" }}>{story.title}</Text>
+              <Text size="sm" style={{ color: "black", textAlign: "left", paddingLeft: "16px" }} mt="xs">{story.exposition}</Text>
+            </div>
+          </div>
+        ))}
+      </div>
     </Stack>
   );
 }

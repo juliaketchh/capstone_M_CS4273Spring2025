@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getUserStories } from "../api/StoryApi";
-import AllStories from "./components/allStories";
+import AllStories from "./components/AllStoriesMantine";
 import CustomCarousel from "../components/Carousel";
+import CarouselSkeleton from "../components/CarouselSkeleton";
 
 export default function Library() {
   const [stories, setStories] = useState([]);
@@ -42,12 +43,17 @@ export default function Library() {
       { id: 10, title: "The Hidden Kingdom", exposition: "A kingdom hidden in the clouds, ruled by a wise queen.", thumbnail: image_url }
     ];
 
-    setStories(mockStories);
-    setLoading(false);
+      setStories(mockStories);
+      setLoading(false);
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <h1>Library</h1>
+        <CarouselSkeleton />
+      </div>
+    );
   }
 
   if (error) {
