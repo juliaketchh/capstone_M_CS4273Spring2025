@@ -3,11 +3,9 @@ import { useState } from 'react'
 import '../styles/App.css'
 import Header from '../components/Header'
 import CharEdit from '../components/char_edit.jsx';
-import StoryLibrary from '../components/library.jsx';
 import StoryGenerate from '../components/generate.jsx';
 import ReadView from '../components/read_view.jsx';
-import './App.css'
-import Library from './pages/Library'
+import Library from '../components/Library'
 
 function App() {
 
@@ -50,7 +48,7 @@ function App() {
       )}
 
       {view === 'library' && (
-        <StoryLibrary onClose={() => setView('menu')} />
+        <Library setView={setView} />
       )}
 
       {view === 'generate' && (
