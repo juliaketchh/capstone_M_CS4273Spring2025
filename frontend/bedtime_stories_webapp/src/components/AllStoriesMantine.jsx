@@ -3,7 +3,7 @@ import { ActionIcon, Group, Menu, Table, Text } from "@mantine/core";
 import { IconDots, IconTrash, IconStar, IconBook } from "@tabler/icons-react";
 import DeleteStoryModal from "./DeleteStoryModal";
 
-export default function AllStories({ stories }) {
+export default function AllStories({ stories, setActiveStory }) {
   const [modalOpened, setModalOpened] = useState(false);
   const [selectedStory, setSelectedStory] = useState(null);
 
@@ -38,7 +38,7 @@ export default function AllStories({ stories }) {
       </Table.Td>
       <Table.Td>
         <Group gap={0} justify="flex-end">
-          <ActionIcon variant="subtle" color="blue" onClick={() => console.log(`Open story: ${story.title}`)}>
+          <ActionIcon variant="subtle" color="blue" onClick={() => setActiveStory(story)}>
             <IconBook size={16} stroke={1.5} />
           </ActionIcon>
           <Menu

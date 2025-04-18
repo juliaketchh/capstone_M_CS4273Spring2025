@@ -20,7 +20,7 @@ const responsive = {
   }
 };
 
-export default function CustomCarousel({ items }) {
+export default function CustomCarousel({ items, setActiveStory }) {
   return (
     <div style={{ paddingBottom: '50px', position: 'relative', width: '100%' }}>
       <Carousel
@@ -47,10 +47,11 @@ export default function CustomCarousel({ items }) {
             className="carousel-item" 
             role="button"
             tabIndex={0}
-            onClick={() => console.log(`Clicked on: ${item.title}`, item)}
+            onClick={() => setActiveStory(item)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 console.log(`Clicked on: ${item.title}`, item);
+                setActiveStory(item);
               }
             }}
             style={{ cursor: "pointer", width: "100%" }}

@@ -26,6 +26,12 @@ export default function Library(setView) {
   }, []);
 
   useEffect(() => {
+    if (activeStory) {
+      console.log("Selected Story:", activeStory);
+    }
+  }, [activeStory]);
+
+  useEffect(() => {
     // Simulating an API call with mock data
     const image_base_url = "https://images.unsplash.com/";
     let image_filename = "photo-1734630630491-458df4f38213";
