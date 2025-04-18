@@ -1,3 +1,5 @@
 **/__pycache__
 *.env
 frontend/bedtime_stories_webapp/src/firebaseConfig.js
+frontend/bedtime_stories_webapp/dist
+frontend/bedtime_stories_webapp/node_modules

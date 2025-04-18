@@ -24,17 +24,25 @@ def create_story():
 
 @story_bp.route("/user/<user_id>", methods=["GET"])
 def get_user_stories(user_id):
-    stories = story_service.get_user_stories(user_id)
+    stories:list = story_service.get_user_stories(user_id)
     if not stories:
         return error_response("No stories found", status_code=404)
-    return success_response([story.to_dict() for story in stories])
+    stories = [story.to_dict() for story in stories]
+
+    for story in stories:
+        story["thumbnail"] = story_service.get_thumbnail_url(story["id"])
+    return success_response(stories)
 
 @story_bp.route("/<story_id>", methods=["GET"])
 def get_story(story_id):
     story = story_service.get_story(story_id)
-    if story:
-        return success_response(story.to_dict())
-    return error_response("Story not found", status_code=404)
+    if not story:
+        return error_response("Story not found", status_code=404)
+    
+    story = story.to_dict()
+    story["thumbnail"] = story_service.get_thumbnail_url(story["id"])
+
+    return success_response(story)
 
 @story_bp.route("/<story_id>", methods=["PUT"])
 def update_story(story_id):

@@ -56,3 +56,10 @@ class StoryService:
         if exists(thumbnail_path):
             return thumbnail_path
         return ""
+    
+    def get_thumbnail_url(self, story_id:int) -> str:
+        thumbnail_path = self.get_story_thumbnail(story_id)
+        url = f"http://localhost:5000/api/story/thumbnail/get/{story_id}"
+        if exists(thumbnail_path):
+            return url
+        return ""
