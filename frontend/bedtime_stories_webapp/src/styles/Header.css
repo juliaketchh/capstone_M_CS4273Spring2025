@@ -14,6 +14,19 @@
     box-sizing: border-box; /* important for padding */
   }
   
+  .header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.5rem;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+    z-index: 999;
+    font-family: 'UnifrakturCook', cursive;
+  }
+  
+
   .logo {
     font-size: 1.5rem;
     display: flex;
@@ -102,7 +115,7 @@
     left: 0;
     width: 200px;
     height: calc(100% - 70px);
-    background-color: #1a1f38;
+    background-color: #81A4CD;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     z-index: 1000;

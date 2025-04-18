@@ -20,42 +20,23 @@ function Header({ navigate }) {
   return (
     <>
       <header className="header">
-        <div className="left-section">
-          <div className="hamburger-icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div className="logo">📚</div>
+        <div className="hamburger-icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
+        <span></span>
+        <span></span>
+        <span></span>
         </div>
+      <h1 className="header-title">Once Upon a Bedtime...</h1>
+    </header>
 
-        <nav className="nav-links">
-          <a href="#" onClick={e => { e.preventDefault(); navigate('menu'); }}>
-            Home
-          </a>
-          <a href="#" onClick={e => { e.preventDefault(); navigate('library'); }}>
-            Story Library
-          </a>
-          <a href="#" onClick={e => { e.preventDefault(); navigate('edit'); }}>
-            Character Editor
-          </a>
-          <a href="#" onClick={e => { e.preventDefault(); navigate('settings'); }}>
-            Story Settings
-          </a>
-          <a href="#" onClick={e => { e.preventDefault(); navigate('generate'); }}>
-            Generate Story
-          </a>
-        </nav>
-
-        <div className="search-bar">
-          <input type="text" placeholder="Search stories" />
-        </div>
-      </header>
 
       {/* Sidebar */}
       {sidebarOpen && (
         <aside className="sidebar">
           <ul>
+            <li><a href="#" onClick={e => { e.preventDefault(); navigate('menu'); }}>Home</a></li>
+            <li><a href="#" onClick={e => { e.preventDefault(); navigate('generate'); }}>Generate New Story</a></li>
+            <li><a href="#" onClick={e => { e.preventDefault(); navigate('library'); }}>Library</a></li>
+            <li><a href="#" onClick={e => { e.preventDefault(); navigate('edit'); }}>Character Editor</a></li>
             <li><a href="#" onClick={e => { e.preventDefault(); navigate('settings'); }}>Settings</a></li>
             <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
           </ul>
