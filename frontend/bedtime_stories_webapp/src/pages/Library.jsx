@@ -9,20 +9,20 @@ export default function Library() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchStories = async () => {
-  //     try {
-  //       const data = await getUserStories(1);
-  //       setStories(data.data);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setError(true);
-  //       setLoading(false);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchStories = async () => {
+      try {
+        const data = await getUserStories(1);
+        setStories(data.data);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    };
 
-  //   fetchStories();
-  // }, []);
+    fetchStories();
+  }, []);
 
   useEffect(() => {
     // Simulating an API call with mock data
@@ -42,10 +42,11 @@ export default function Library() {
       { id: 9, title: "The Robot's Dream", exposition: "A robot discovers what it means to dream and feel.", thumbnail: image_url },
       { id: 10, title: "The Hidden Kingdom", exposition: "A kingdom hidden in the clouds, ruled by a wise queen.", thumbnail: image_url }
     ];
-
-      setStories(mockStories);
+      if (stories.length < 10) {
+        setStories([...stories, ...mockStories]);
+      }
       setLoading(false);
-  }, []);
+  }, [stories]);
 
   if (loading) {
     return (
