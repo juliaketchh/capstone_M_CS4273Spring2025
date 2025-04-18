@@ -51,6 +51,7 @@
 }
 
 body {
+  background-image: url('/images/background.png');
   padding-top: 100px;
   margin: 0;
   padding: 0;
