@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ActionIcon, Group, Menu, Table, Text } from "@mantine/core";
 import { IconDots, IconTrash, IconStar, IconBook } from "@tabler/icons-react";
-import DeleteStoryModal from "../../components/DeleteStoryModal";
+import DeleteStoryModal from "./DeleteStoryModal";
 
 export default function AllStories({ stories }) {
   const [modalOpened, setModalOpened] = useState(false);
