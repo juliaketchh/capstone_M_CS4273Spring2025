@@ -20,6 +20,12 @@ def test():
 def generate_story():
     data = request.json
     try:
+        # Validate input data
+        required_fields = ["genre", "perspective", "tone", "protagonist_name"]
+        for field in required_fields:
+            if field not in data or not data[field]:
+                return error_response(f"Missing required field: {field}", status_code=400)
+
         # Generate the story text using the LLM service
         title, content, exposition = llm_service.generate_story(
             genre=data.get("genre"),
@@ -28,6 +34,7 @@ def generate_story():
             protagonist_name=data.get("protagonist_name"),
             word_count=data.get("word_count", 300)
         )
+
         # Add the generated story to the data
         data["title"] = title
         data["content"] = content
@@ -37,7 +44,7 @@ def generate_story():
         story = story_service.create_story(data)
         if not story:
             return error_response("Failed to generate story", status_code=500)
-        
+
         # Create the story thumbnail
         thumbnail_path = story_service.create_story_thumbnail(story.id)
         if not thumbnail_path:
@@ -47,6 +54,7 @@ def generate_story():
         # Return the generated story object
         return success_response(story.to_dict(), message="Story generated", status_code=201)
     except Exception as e:
+        print(f"Error generating story: {e}")  # Log the error for debugging
         return error_response(f"An error occurred: {str(e)}", status_code=500)
 
 @story_bp.route("/", methods=["POST"])
