@@ -35,8 +35,21 @@ class Story(db.Model):
             'genres': [genre.genre for genre in self.genres],
             'themes': [theme.theme for theme in self.themes],
             'tones': [tone.tone for tone in self.tones],
-            'characters': [{'name': character.name, 'description': character.description, 'age': character.age} for character in self.characters],
-            'series': [{'series_id': series.series_id, 'sequence_num': series.sequence_num} for series in self.series]
+            'characters': [
+                {
+                    'name': character.name,
+                    'description': character.description,
+                    'age': character.age,
+                }
+                for character in self.characters
+            ],
+            'series': [
+                {
+                    'series_id': series.series_id,
+                    'sequence_num': series.sequence_num,
+                }
+                for series in self.series
+            ],
         }
 
     def __repr__(self):

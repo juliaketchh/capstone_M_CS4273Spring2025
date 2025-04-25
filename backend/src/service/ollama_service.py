@@ -10,7 +10,7 @@ class OllamaService:
     def __init__(self):
         self.model = "deepseek-r1:1.5b"
 
-    def generate_story(self, genre, perspective, tone, protagonist_name, word_count=300) -> tuple[str, str, str]:
+    def generate_story(self, genre, perspective, tone, protagonist_name, additional_characters=[], word_count=300) -> tuple[str, str, str]:
         # Customize the prompt based on user input
         """
         Generate a story based on user inputs.
@@ -22,7 +22,13 @@ class OllamaService:
         :param word_count: Desired length of the story (default: 300 words)
         :return: Generated story
         """
-        prompt = f"Write a {word_count}-word {genre} story in the {perspective} perspective with a {tone} tone, featuring a protagonist named {protagonist_name}."
+        prompt = f"""Please write a {word_count}-word {genre} story in the {perspective} perspective 
+                    with a {tone} tone, featuring a protagonist named {protagonist_name}.
+
+                    A story has a title, content, and exposition.
+                    The title should be a short and catchy phrase that reflects the main theme of the story.
+                    The content should be a well-structured narrative that includes a beginning, middle, and end.                    
+                    The story should include an exposition that sets the scene and introduces the characters in a couples sentences at most."""
         
         # Query Ollama to generate the story
         response = ollama.chat(model=self.model, 
