@@ -6,6 +6,7 @@ import CharEdit from '../components/char_edit.jsx';
 import StoryGenerate from '../components/generate.jsx';
 import ReadView from '../components/read_view.jsx';
 import Library from '../components/Library'
+import ReadView from '../components/read_view.jsx';
 
 function App() {
 
