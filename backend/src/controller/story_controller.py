@@ -16,6 +16,38 @@ def generate_random_story():
 def test():
     return success_response("test")
 
+@story_bp.route("/generate", methods=["POST"])
+def generate_story():
+    data = request.json
+    try:
+        # Generate the story text using the LLM service
+        title, content = llm_service.generate_story(
+            genre=data.get("genre"),
+            perspective=data.get("perspective"),
+            tone=data.get("tone"),
+            protagonist_name=data.get("protagonist_name"),
+            word_count=data.get("word_count", 300)
+        )
+        # Add the generated story to the data
+        data["title"] = title
+        data["content"] = content
+
+        # Insert the story into the database
+        story = story_service.create_story(data)
+        if not story:
+            return error_response("Failed to generate story", status_code=500)
+        
+        # Create the story thumbnail
+        thumbnail_path = story_service.create_story_thumbnail(story.id)
+        if not thumbnail_path:
+            return error_response("Failed to create thumbnail", status_code=500)
+        story_service.update_story_thumbnail(story.id)
+
+        # Return the generated story object
+        return success_response(story.to_dict(), message="Story generated", status_code=201)
+    except Exception as e:
+        return error_response(f"An error occurred: {str(e)}", status_code=500)
+
 @story_bp.route("/", methods=["POST"])
 def create_story():
     data = request.json

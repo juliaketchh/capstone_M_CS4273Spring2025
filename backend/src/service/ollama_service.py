@@ -1,10 +1,15 @@
 import ollama
+from pydantic import BaseModel
+
+class GeneratedStory(BaseModel):
+    title: str
+    content: str
 
 class OllamaService:
     def __init__(self):
         self.model = "deepseek-r1:1.5b"
 
-    def generate_story(self, genre, perspective, tone, protagonist_name, word_count=300):
+    def generate_story(self, genre, perspective, tone, protagonist_name, word_count=300) -> tuple[str, str]:
         # Customize the prompt based on user input
         """
         Generate a story based on user inputs.
@@ -19,9 +24,13 @@ class OllamaService:
         prompt = f"Write a {word_count}-word {genre} story in the {perspective} perspective with a {tone} tone, featuring a protagonist named {protagonist_name}."
         
         # Query Ollama to generate the story
-        response = ollama.chat(model=self.model, messages=[{"role": "user", "content": prompt}])
-        story = response['message']['content']
-        return self.remove_deepseeks_thought(story)
+        response = ollama.chat(model=self.model, 
+                               messages=[{"role": "user", "content": prompt}],
+                               format=GeneratedStory.model_json_schema(),
+                               )
+        
+        story = GeneratedStory.model_validate_json(response.message.content)
+        return story.title, story.content
     
     def generate_random_story(self):
         prompt = "Write a story that will surprise me"
