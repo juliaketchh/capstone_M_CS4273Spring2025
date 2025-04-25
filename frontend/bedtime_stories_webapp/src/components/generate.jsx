@@ -1,34 +1,47 @@
 import React, { useState } from 'react';
 import '../styles/generate.css';
+import { generateStory } from '../api/StoryApi';
 
-export default function StoryGenerate({ onClose }) {
-  const [name, setName] = useState('');
-  const [customName, setCustomName] = useState('');
+export default function StoryGenerate({ onClose, userId }) {
   const [character, setCharacter] = useState('');
+  const [customName, setCustomName] = useState('');
   const [perspective, setPerspective] = useState('');
   const [customPerspective, setCustomPerspective] = useState('');
   const [plot, setPlot] = useState('');
   const [tone, setTone] = useState('');
   const [customTone, setCustomTone] = useState('');
   const [story, setStory] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const generateStory = (name, tone, plot) => {
-    const stories = {
-      adventure: `${name} embarks on an exciting journey in a ${tone} world, where they face numerous challenges and make new friends.`,
-      mystery: `${name} arrives at a ${tone} place filled with secrets. As they investigate, they uncover hidden truths about the area.`,
-      romance: `${name} meets someone special in a ${tone} setting, and together they experience a whirlwind romance full of unexpected twists.`,
-      'sci-fi': `${name} travels to a ${tone} futuristic world full of advanced technology, where they must save the planet from an impending threat.`,
-    };
-
-    return stories[plot];
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError('');
+    setStory('');
+
     const characterName = character === 'other' ? customName : character;
     const storyTone = tone === 'other' ? customTone : tone;
-    const generatedStory = generateStory(characterName, storyTone, plot);
-    setStory(generatedStory);
+    const storyPerspective = perspective === 'other' ? customPerspective : perspective;
+
+    const storyData = {
+      user_id: userId,
+      genre: plot,
+      perspective: storyPerspective,
+      tone: storyTone,
+      protagonist_name: characterName,
+      word_count: 300,
+    };
+
+    try {
+      const response = await generateStory(storyData);
+      setStory(response.data.content);
+    } catch (err) {
+      setError('Failed to generate story. Please try again.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -141,8 +154,12 @@ export default function StoryGenerate({ onClose }) {
           </>
         )}
 
-        <button type="submit">Generate Story</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Generating...' : 'Generate Story'}
+        </button>
       </form>
+
+      {error && <div className="error-message">{error}</div>}
 
       {story && (
         <div className="story-output">
