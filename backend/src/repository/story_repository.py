@@ -1,19 +1,30 @@
 from src.database.database import db
 from src.model.story import Story
+from src.model.genre import Genre
 
 class StoryRepository:
     @staticmethod
     def create_story(data):
+        # Create a new Story object
         story = Story(
-            id=data.get("id"),
-            user_id=data["user_id"],
-            title=data["title"],
-            perspective=data["perspective"],
-            content=data["content"],
-            exposition=data.get("exposition"),
+            user_id=data.get("user_id"),
+            title=data.get("title", ""),
+            perspective=data.get("perspective", ""),
+            content=data.get("content", ""), 
+            exposition=data.get("exposition", ""), 
             protagonist_id=data.get("protagonist_id"),
-            image=data.get("image"),
         )
+        
+        # Handle genres if provided
+        genre_names = data.get("genres", [])  # Expecting a list of genre names
+        for genre_name in genre_names:
+            genre = Genre.query.filter_by(genre=genre_name).first()
+            if not genre:
+                # Create the genre if it doesn't exist
+                genre = Genre(genre=genre_name)
+                db.session.add(genre)
+            story.genres.append(genre)
+
         db.session.add(story)
         db.session.commit()
         return story

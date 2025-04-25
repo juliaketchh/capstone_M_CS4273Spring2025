@@ -49,7 +49,7 @@ class TestOllamaService(unittest.TestCase):
     def test_generate_story_live(self):
         """Integration test: Calls Ollama API to generate a real story."""
         service = OllamaService()
-        title, content = service.generate_story(
+        title, content, exposition = service.generate_story(
             genre="meaningful lesson",
             perspective="first-person",
             tone="happy",
@@ -59,8 +59,11 @@ class TestOllamaService(unittest.TestCase):
 
         print("\nGenerated Story Title:\n", title)
         print("\nFull Generated Story from Ollama:\n", content)
+        print("\nExposition:\n", exposition)
+
         self.assertIsNotNone(title)
         self.assertIsNotNone(content)
+        self.assertIsNotNone(exposition)
 
 if __name__ == '__main__':
     unittest.main()

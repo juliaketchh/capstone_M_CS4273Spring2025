@@ -4,12 +4,13 @@ from pydantic import BaseModel
 class GeneratedStory(BaseModel):
     title: str
     content: str
+    exposition: str
 
 class OllamaService:
     def __init__(self):
         self.model = "deepseek-r1:1.5b"
 
-    def generate_story(self, genre, perspective, tone, protagonist_name, word_count=300) -> tuple[str, str]:
+    def generate_story(self, genre, perspective, tone, protagonist_name, word_count=300) -> tuple[str, str, str]:
         # Customize the prompt based on user input
         """
         Generate a story based on user inputs.
@@ -30,7 +31,7 @@ class OllamaService:
                                )
         
         story = GeneratedStory.model_validate_json(response.message.content)
-        return story.title, story.content
+        return story.title, story.content, story.exposition
     
     def generate_random_story(self):
         prompt = "Write a story that will surprise me"

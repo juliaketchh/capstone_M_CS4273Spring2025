@@ -21,7 +21,7 @@ def generate_story():
     data = request.json
     try:
         # Generate the story text using the LLM service
-        title, content = llm_service.generate_story(
+        title, content, exposition = llm_service.generate_story(
             genre=data.get("genre"),
             perspective=data.get("perspective"),
             tone=data.get("tone"),
@@ -31,6 +31,7 @@ def generate_story():
         # Add the generated story to the data
         data["title"] = title
         data["content"] = content
+        data["exposition"] = exposition
 
         # Insert the story into the database
         story = story_service.create_story(data)

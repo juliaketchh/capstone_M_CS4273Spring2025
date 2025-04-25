@@ -1,5 +1,5 @@
 from src.database.database import db
-from src.model.story_genre import StoryGenre
+from src.model.story_genre import story_genre
 from src.model.story_theme import StoryTheme
 from src.model.story_tone import StoryTone
 from src.model.story_series import StorySeries
@@ -12,12 +12,12 @@ class Story(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     title = db.Column(db.String, nullable=False)
-    perspective = db.Column(db.String, nullable=False)
+    perspective = db.Column(db.String)
     content = db.Column(db.Text, nullable=False)
     exposition = db.Column(db.Text)
     protagonist_id = db.Column(db.Integer)
 
-    genres = db.relationship('Genre', secondary='story_genre', backref='stories')
+    genres = db.relationship('Genre', secondary=story_genre, backref='stories')
     themes = db.relationship('StoryTheme', backref='story', lazy=True)
     tones = db.relationship('StoryTone', backref='story', lazy=True)
     characters = db.relationship('StoryCharacter', backref='story', lazy=True)
