@@ -21,7 +21,7 @@ def generate_story():
     data = request.json
     try:
         # Validate input data
-        required_fields = ["genre", "perspective", "tone", "protagonist_name"]
+        required_fields = ["genre", "perspective", "tone", "protagonist_name", "user_id"]
         for field in required_fields:
             if field not in data or not data[field]:
                 return error_response(f"Missing required field: {field}", status_code=400)
