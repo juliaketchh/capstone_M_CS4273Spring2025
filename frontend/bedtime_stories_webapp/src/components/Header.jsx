@@ -34,6 +34,7 @@ function Header({ navigate }) {
         <aside className="sidebar">
           <ul>
             <li><a href="#" onClick={e => { e.preventDefault(); navigate('menu'); }}>Home</a></li>
+            <li><a href="#" onClick={e => { e.preventDefault(); navigate('read'); }}>Current Read</a></li>
             <li><a href="#" onClick={e => { e.preventDefault(); navigate('generate'); }}>Generate New Story</a></li>
             <li><a href="#" onClick={e => { e.preventDefault(); navigate('library'); }}>Library</a></li>
             <li><a href="#" onClick={e => { e.preventDefault(); navigate('edit'); }}>Character Editor</a></li>
