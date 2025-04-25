@@ -28,7 +28,8 @@ class OllamaService:
                     A story has a title, content, and exposition.
                     The title should be a short and catchy phrase that reflects the main theme of the story.
                     The content should be a well-structured narrative that includes a beginning, middle, and end.                    
-                    The story should include an exposition that sets the scene and introduces the characters in a couples sentences at most."""
+                    The story should include an exposition that sets the scene and introduces the characters in a couples sentences at most. 
+                    It should be much shorter than the content."""
         
         # Query Ollama to generate the story
         response = ollama.chat(model=self.model, 
