@@ -5,12 +5,11 @@ from src.model.story_tone import StoryTone
 from src.model.story_series import StorySeries
 from src.model.genre import Genre
 from src.model.story_character import StoryCharacter
-from src.model.user import User
 
 class Story(db.Model):
     __tablename__ = 'story'
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.String, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.String, nullable=False)
     title = db.Column(db.String, nullable=False)
     perspective = db.Column(db.String)
     content = db.Column(db.Text, nullable=False)
