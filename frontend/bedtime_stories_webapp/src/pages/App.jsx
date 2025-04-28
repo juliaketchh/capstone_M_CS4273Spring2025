@@ -1,47 +1,52 @@
 import { useState } from 'react'
-// import { useEffect } from 'react'; when connecting to api
+import { useEffect } from 'react'
 import '../styles/App.css'
 import Header from '../components/Header'
 import CharEdit from '../components/char_edit.jsx';
 import StoryGenerate from '../components/generate.jsx';
 import ReadView from '../components/read_view.jsx';
 import Library from '../components/Library'
-import ReadView from '../components/read_view.jsx';
 
 function App() {
-
-  // const [storyData, setStoryData] = useState(null); when connecting to api for read
 
   // 'menu'   = main menu
   // 'edit'   = character editor
   // 'library' = story library
   // 'generate' = story generator
   // 'read' = current open read
+  const [selectedStoryId, setSelectedStoryId] = useState(null);
+  const [storyData, setStoryData] = useState(null);
   const [view, setView] = useState('menu');
 
-      // this is for when we connect it to backend api
-      // useEffect(() => {
-      //   if (view === 'read') {
-      //     fetch('/api/stories/current') // api path i need
-      //       .then(res => res.json())
-      //       .then(data => setStoryData(data))
-      //       .catch(err => {
-      //         console.error('Failed to load story:', err);
-      //         setStoryData({
-      //           title: 'Error',
-      //           content: 'There was a problem loading your story.'
-      //         });
-      //       });
-      //   }
-      // }, [view]);
+  useEffect(() => {
+    if (view === 'read' && selectedStoryId) {
+      fetch(`http://localhost:5000/api/story/${selectedStoryId}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.status === 'success') {
+            setStoryData(data.data); // data inside the story data 
+          } else {
+            console.error('Story fetch failed');
+          }
+        })
+        .catch(err => {
+          console.error('Failed to load story:', err);
+          setStoryData({
+            title: 'Error',
+            content: 'There was a problem loading your story.'
+          });
+        });
+    }
+  }, [view, selectedStoryId]);
+  
 
 
   return (
     <>
-      <Header navigate={setView} />
+      <Header navigate={setView} setSelectedStoryId={setSelectedStoryId} />
 
       {view === 'menu' && (
-        <MainMenu navigate={setView} />
+        <MainMenu navigate={setView} setSelectedStoryId={setSelectedStoryId} />
       )}
 
       {view === 'edit' && (
@@ -56,18 +61,22 @@ function App() {
         <StoryGenerate onClose={() => setView('menu')} />
       )}
 
-      {view === 'read' && ( //storyData && put this in when there is story data
+      {view === 'read' && storyData && (
         <ReadView
-          title= "Title Here" //{storyData.title}
-          content= "Lorem ipsum dolor sit amet consectetur adipiscing elit. Ex sapien vitae pellentesque sem placerat in id. Pretium tellus duis convallis tempus leo eu aenean. Urna tempor pulvinar vivamus fringilla lacus nec metus. Iaculis massa nisl malesuada lacinia integer nunc posuere. Semper vel class aptent taciti sociosqu ad litora. Conubia nostra inceptos himenaeos orci varius natoque penatibus. Dis parturient montes nascetur ridiculus mus donec rhoncus. Nulla molestie mattis scelerisque maximus eget fermentum odio. Purus est efficitur laoreet mauris pharetra vestibulum fusce."   //{storyData.content}
-          onClose={() => setView('menu')}
+          title={storyData.title}
+          content={storyData.content}
+          onClose={() => {
+            setView('menu');
+            setStoryData(null);
+            setSelectedStoryId(null);
+          }}
         />
       )}
     </>
   );
 }
 
-function MainMenu({ navigate }) {
+function MainMenu({ navigate, setSelectedStoryId }) {
   return (
     <>
       <h1>User&#39;s Bedtime Stories</h1>
@@ -93,13 +102,15 @@ function MainMenu({ navigate }) {
 
         <div className="divider" />
 
-        <button className="button" onClick={() => navigate('read')}>
-          Open Current Read
+        <button className="button" onClick={() => {
+          setSelectedStoryId(1); //TODO
+          navigate('read');
+        }}>
+          Open current Read
         </button>
       </div>
     </>
   );
 }
-
 
 export default App;
