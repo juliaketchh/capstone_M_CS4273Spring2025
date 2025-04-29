@@ -5,8 +5,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import '../styles/App.css';
 import Header from '../components/Header';
 import CharEdit from '../components/char_edit.jsx';
-import StoryLibrary from '../components/library.jsx';
 import StoryGenerate from '../components/generate.jsx';
+import Library from '../components/Library'
 
 function App() {
   const [view, setView] = useState('menu');
@@ -30,9 +30,18 @@ function App() {
     <>
       <Header navigate={setView} />
 
-      {view === 'menu' && <MainMenu navigate={setView} />}
-      {view === 'edit' && <CharEdit onClose={() => setView('menu')} />}
-      {view === 'library' && <StoryLibrary onClose={() => setView('menu')} />}
+      {view === 'menu' && (
+        <MainMenu navigate={setView} />
+      )}
+
+      {view === 'edit'     && (
+        <CharEdit onClose={() => setView('menu')} />
+      )}
+
+      {view === 'library' && (
+        <Library setView={setView} />
+      )}
+
       {view === 'generate' && (
         <StoryGenerate onClose={() => setView('menu')} userId={userId} />
       )}
