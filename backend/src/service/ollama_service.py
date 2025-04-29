@@ -1,10 +1,16 @@
 import ollama
+from pydantic import BaseModel
+
+class GeneratedStory(BaseModel):
+    title: str
+    content: str
+    exposition: str
 
 class OllamaService:
     def __init__(self):
         self.model = "deepseek-r1:1.5b"
 
-    def generate_story(self, genre, perspective, tone, protagonist_name, word_count=300):
+    def generate_story(self, genre, perspective, tone, protagonist_name, additional_characters=[], word_count=300) -> tuple[str, str, str]:
         # Customize the prompt based on user input
         """
         Generate a story based on user inputs.
@@ -16,12 +22,23 @@ class OllamaService:
         :param word_count: Desired length of the story (default: 300 words)
         :return: Generated story
         """
-        prompt = f"Write a {word_count}-word {genre} story in the {perspective} perspective with a {tone} tone, featuring a protagonist named {protagonist_name}."
+        prompt = f"""Please write a {word_count}-word {genre} story in the {perspective} perspective 
+                    with a {tone} tone, featuring a protagonist named {protagonist_name}.
+
+                    A story has a title, content, and exposition.
+                    The title should be a short and catchy phrase that reflects the main theme of the story.
+                    The content should be a well-structured narrative that includes a beginning, middle, and end.                    
+                    The story should include an exposition that sets the scene and introduces the characters in a couples sentences at most. 
+                    It should be much shorter than the content."""
         
         # Query Ollama to generate the story
-        response = ollama.chat(model=self.model, messages=[{"role": "user", "content": prompt}])
-        story = response['message']['content']
-        return self.remove_deepseeks_thought(story)
+        response = ollama.chat(model=self.model, 
+                               messages=[{"role": "user", "content": prompt}],
+                               format=GeneratedStory.model_json_schema(),
+                               )
+        
+        story = GeneratedStory.model_validate_json(response.message.content)
+        return story.title, story.content, story.exposition
     
     def generate_random_story(self):
         prompt = "Write a story that will surprise me"

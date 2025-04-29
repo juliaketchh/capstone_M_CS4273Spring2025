@@ -1,16 +1,30 @@
-import { useState } from 'react'
-import '../styles/App.css'
-import Header from '../components/Header'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+import '../styles/App.css';
+import Header from '../components/Header';
 import CharEdit from '../components/char_edit.jsx';
 import StoryGenerate from '../components/generate.jsx';
 import Library from '../components/Library'
 
 function App() {
-  // 'menu'   = main menu
-  // 'edit'   = character editor
-  // 'library' = story library
-  // 'generate' = story generator
   const [view, setView] = useState('menu');
+  const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid); // Set the Firebase user ID
+      } else {
+        navigate('/login'); // Redirect to login if not authenticated
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup the listener on unmount
+  }, [navigate]);
 
   return (
     <>
@@ -29,7 +43,7 @@ function App() {
       )}
 
       {view === 'generate' && (
-        <StoryGenerate onClose={() => setView('menu')} />
+        <StoryGenerate onClose={() => setView('menu')} userId={userId} />
       )}
     </>
   );
@@ -62,6 +76,5 @@ function MainMenu({ navigate }) {
     </>
   );
 }
-
 
 export default App;
