@@ -30,7 +30,7 @@ function Header({ navigate, stories, setSelectedStory }) {
   return (
     <>
       <header className="header">
-        <div className="hamburger-icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
+        <div className="fa fa-bars fa-2x hamburger-icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
           <span></span>
           <span></span>
           <span></span>
@@ -44,37 +44,37 @@ function Header({ navigate, stories, setSelectedStory }) {
           <ul>
             <li>
               <a href="#" onClick={(e) => { e.preventDefault(); navigate('menu'); }}>
-                Home
+              <i className="fas fa-home"></i>Home
               </a>
             </li>
             <li>
               <a href="#" onClick={(e) => { e.preventDefault(); handleCurrentRead(); }}>
-                Current Read
+              <i className="fas fa-bookmark"></i>Last Read
               </a>
             </li>
             <li>
               <a href="#" onClick={(e) => { e.preventDefault(); navigate('generate'); }}>
-                Generate New Story
+              <i className="fas fa-pencil-alt"></i>Generate New Story
               </a>
             </li>
             <li>
               <a href="#" onClick={(e) => { e.preventDefault(); navigate('library'); }}>
-                Library
+              <i className="fas fa-book"></i>Library
               </a>
             </li>
             <li>
               <a href="#" onClick={(e) => { e.preventDefault(); navigate('edit'); }}>
-                Character Editor
+              <i className="fas fa-users"></i>Character Editor
               </a>
             </li>
             <li>
               <a href="#" onClick={(e) => { e.preventDefault(); navigate('settings'); }}>
-                Settings
+              <i className="fas fa-cog"></i>Settings
               </a>
             </li>
             <li>
               <button className="logout-button" onClick={handleLogout}>
-                Logout
+              <i className="fas fa-sign-out-alt"></i>Logout
               </button>
             </li>
           </ul>

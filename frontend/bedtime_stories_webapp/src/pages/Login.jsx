@@ -59,20 +59,28 @@ function Login() {
   return (
     <div className="auth-container">
       <h2>Login or Sign Up</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
-      <button onClick={handleSignUp}>Sign Up</button>
+      <div classname= "email">
+        <span class="auth-container-addon"><i class="fa fa-envelope fa-fw "></i> </span>
+        <input
+          class="form-control"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
+      <div classname= "email">
+        <span class="auth-container-addon"><i class="fa fa-key fa-fw"></i> </span>
+        <input
+          class="form-control"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      <button onClick={handleLogin}><i class="fa fa-sign-in-alt" aria-hidden="true"></i> Login</button>
+      <button onClick={handleSignUp}><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );

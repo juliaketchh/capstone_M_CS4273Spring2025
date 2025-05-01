@@ -101,19 +101,19 @@ function MainMenu({ navigate, onNavigateToLibrary }) {
         <div className="divider" />
 
         <button className="button" onClick={() => navigate('edit')}>
-          Character Editor
+        <i className="fas fa-users"></i> Character Editor
         </button>
 
         <div className="divider" />
 
         <button className="button" onClick={onNavigateToLibrary}>
-          Story Library
+        <i className="fas fa-book"></i> Story Library
         </button>
 
         <div className="divider" />
 
         <button className="button" onClick={() => navigate('generate')}>
-          Generate Story
+        <i className="fas fa-pencil-alt"></i> Generate Story
         </button>
       </div>
     </>

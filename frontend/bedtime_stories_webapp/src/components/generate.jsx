@@ -50,7 +50,7 @@ export default function StoryGenerate({ onClose, userId }) {
       <form onSubmit={handleSubmit} className="story-form">
 
         {/* Character Selection */}
-        <label htmlFor="character">Character:</label>
+        <label htmlFor="character"><i className="fas fa-user"></i> Character:</label>
         <select
           id="character"
           value={character}
@@ -81,7 +81,7 @@ export default function StoryGenerate({ onClose, userId }) {
         )}
 
         {/* Perspective */}
-        <label htmlFor="perspective">Perspective:</label>
+        <label htmlFor="perspective"><i className="fas fa-eye"></i> Perspective:</label>
         <select
           id="perspective"
           value={perspective}
@@ -110,7 +110,7 @@ export default function StoryGenerate({ onClose, userId }) {
         )}
 
         {/* Plot Type */}
-        <label htmlFor="plot">Plot Type:</label>
+        <label htmlFor="plot"><i className="fas fa-map"></i> Plot Type:</label>
         <select
           id="plot"
           value={plot}
@@ -125,7 +125,7 @@ export default function StoryGenerate({ onClose, userId }) {
         </select>
 
         {/* Tone */}
-        <label htmlFor="tone">Tone:</label>
+        <label htmlFor="tone"><i className="fas fa-music"></i> Tone:</label>
         <select
           id="tone"
           value={tone}
@@ -155,7 +155,13 @@ export default function StoryGenerate({ onClose, userId }) {
         )}
 
         <button type="submit" disabled={loading}>
-          {loading ? 'Generating...' : 'Generate Story'}
+        {loading ? (
+    <>
+      Generating...<i className="fa fa-spinner fa-pulse fa-fw"></i>
+    </>
+  ) : (
+    'Generate Story'
+  )}
         </button>
       </form>
 
@@ -167,7 +173,7 @@ export default function StoryGenerate({ onClose, userId }) {
         </div>
       )}
 
-      <button onClick={onClose} className="done-button">Done</button>
+      <button onClick={onClose} className="done-button"><i className="fas fa-home"></i> Done</button>
     </div>
   );
 }
