@@ -2,31 +2,36 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
+import { getUserStories } from '../api/StoryApi';
 import '../styles/App.css';
 import Header from '../components/Header';
 import CharEdit from '../components/char_edit.jsx';
 import StoryGenerate from '../components/generate.jsx';
 import ReadView from '../components/ReadView.jsx';
-import Library from '../components/Library'
+import Library from '../components/Library';
 
 function App() {
-
-  // 'menu'   = main menu
-  // 'edit'   = character editor
-  // 'library' = story library
-  // 'generate' = story generator
-  // 'read' = current open read
-  const [selectedStoryId, setSelectedStoryId] = useState(null);
-  const [storyData, setStoryData] = useState(null);
   const [view, setView] = useState('menu');
   const [userId, setUserId] = useState(null);
+  const [stories, setStories] = useState([]);
+  const [selectedStory, setSelectedStory] = useState(null);
   const navigate = useNavigate();
+
+  const fetchStories = async (userId) => {
+    try {
+      const response = await getUserStories(userId);
+      setStories(response.data);
+    } catch (error) {
+      console.error('Failed to fetch user stories:', error);
+    }
+  };
 
   useEffect(() => {
     // Listen for authentication state changes
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUserId(user.uid); // Set the Firebase user ID
+        await fetchStories(user.uid); // Fetch stories for the authenticated user
       } else {
         navigate('/login'); // Redirect to login if not authenticated
       }
@@ -35,69 +40,44 @@ function App() {
     return () => unsubscribe(); // Cleanup the listener on unmount
   }, [navigate]);
 
-  useEffect(() => {
-    if (view === 'read' && selectedStoryId) {
-      fetch(`http://localhost:5000/api/story/${selectedStoryId}`)
-        .then(res => res.json())
-        .then(data => {
-          if (data.status === 'success') {
-            setStoryData(data.data); // data inside the story data 
-          } else {
-            console.error('Story fetch failed');
-          }
-        })
-        .catch(err => {
-          console.error('Failed to load story:', err);
-          setStoryData({
-            title: 'Error',
-            content: 'There was a problem loading your story.'
-          });
-        });
-    }
-  }, [view, selectedStoryId]);
-  
+  const handleStoryClick = (story) => {
+    setSelectedStory(story);
+    setView('read');
+  };
 
+  const handleStoryGenerated = async () => {
+    if (userId) {
+      await fetchStories(userId); // Fetch stories again after a new story is generated
+    }
+    setView('menu');
+  };
 
   return (
     <>
-      <Header navigate={setView} setSelectedStoryId={setSelectedStoryId} />
+      <Header navigate={setView} />
 
-      {view === 'menu' && (
-        <MainMenu navigate={setView} setSelectedStoryId={setSelectedStoryId} />
-      )}
+      {view === 'menu' && <MainMenu navigate={setView} />}
 
-      {view === 'edit' && (
-        <CharEdit onClose={() => setView('menu')} />
-      )}
+      {view === 'edit' && <CharEdit onClose={() => setView('menu')} />}
 
       {view === 'library' && (
-        <Library setView={setView} />
-      )}
-
-      {view === 'generate' && (
-        <StoryGenerate onClose={() => setView('menu')} userId={userId} />
-      )}
-
-      {view === 'read' && storyData && (
-        <ReadView
-          title={storyData.title}
-          content={storyData.content}
-          onClose={() => {
-            setView('menu');
-            setStoryData(null);
-            setSelectedStoryId(null);
-          }}
+        <Library
+          stories={stories}
+          onStoryClick={handleStoryClick}
+          onClose={() => setView('menu')}
         />
       )}
 
-      {view === 'read' && storyData && (
+      {view === 'generate' && (
+        <StoryGenerate onClose={handleStoryGenerated} userId={userId} />
+      )}
+
+      {view === 'read' && selectedStory && (
         <ReadView
-          title={storyData.title}
-          content={storyData.content}
+          story={selectedStory}
           onClose={() => {
             setView('menu');
-            setStoryData(null);
-            setSelectedStoryId(null);
+            setSelectedStory(null);
           }}
         />
       )}
@@ -105,7 +85,7 @@ function App() {
   );
 }
 
-function MainMenu({ navigate, setSelectedStoryId }) {
+function MainMenu({ navigate }) {
   return (
     <>
       <h1>User&#39;s Bedtime Stories</h1>
@@ -127,15 +107,6 @@ function MainMenu({ navigate, setSelectedStoryId }) {
 
         <button className="button" onClick={() => navigate('generate')}>
           Generate Story
-        </button>
-
-        <div className="divider" />
-
-        <button className="button" onClick={() => {
-          setSelectedStoryId(1); //TODO
-          navigate('read');
-        }}>
-          Open current Read
         </button>
       </div>
     </>
