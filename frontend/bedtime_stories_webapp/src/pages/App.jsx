@@ -52,11 +52,18 @@ function App() {
     setView('menu');
   };
 
+  const handleNavigateToLibrary = async () => {
+    if (userId) {
+      await fetchStories(userId); // Fetch stories again when navigating to the library
+    }
+    setView('library');
+  };
+
   return (
     <>
-      <Header navigate={setView} />
+      <Header navigate={setView} stories={stories} setSelectedStory={setSelectedStory} />
 
-      {view === 'menu' && <MainMenu navigate={setView} />}
+      {view === 'menu' && <MainMenu navigate={setView} onNavigateToLibrary={handleNavigateToLibrary} />}
 
       {view === 'edit' && <CharEdit onClose={() => setView('menu')} />}
 
@@ -85,7 +92,7 @@ function App() {
   );
 }
 
-function MainMenu({ navigate }) {
+function MainMenu({ navigate, onNavigateToLibrary }) {
   return (
     <>
       <h1>User&#39;s Bedtime Stories</h1>
@@ -99,7 +106,7 @@ function MainMenu({ navigate }) {
 
         <div className="divider" />
 
-        <button className="button" onClick={() => navigate('library')}>
+        <button className="button" onClick={onNavigateToLibrary}>
           Story Library
         </button>
 
