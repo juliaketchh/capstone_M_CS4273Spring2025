@@ -98,6 +98,10 @@
     color: #ffffff;
     cursor: pointer;
   }
+
+  .hamburger-icon:hover{
+    color: #4229b3;
+  }
   
   /* Sidebar */
   .sidebar {
