@@ -6,7 +6,7 @@ import '../styles/App.css';
 import Header from '../components/Header';
 import CharEdit from '../components/char_edit.jsx';
 import StoryGenerate from '../components/generate.jsx';
-import ReadView from '../components/read_view.jsx';
+import ReadView from '../components/ReadView.jsx';
 import Library from '../components/Library'
 
 function App() {
