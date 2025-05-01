@@ -1,5 +1,8 @@
 for development purposes:
 
+* note for aksel's edits:
+npm install react-router-dom firebase
+
 cd into bedtime_stories_webapp \
 run: \
 npm install \
