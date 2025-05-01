@@ -1,0 +1,113 @@
+/* StoryGenerate.css */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+  }
+  
+  .story-generate-container {
+
+    max-width: 1000px;
+    width: 90%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .story-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .story-form label {
+    margin-top: 15px;
+    font-size: 16px;
+    text-align: left;
+    width: 80%;
+  }
+  
+  .story-form input,
+  .story-form select,
+  .story-form button {
+    width: 80%;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .story-form input[type="range"] {
+    width: 80%;
+    margin-top: 10px;
+  }
+  
+  .story-form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .story-form button:hover {
+    background-color: #45a049;
+  }
+  
+  .creativity-level-value {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .story-output {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    color: #333;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    word-wrap: break-word;
+  }
+  
+  .done-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .done-button:hover {
+    background-color: #444;
+  }
+  
+  /* Responsive Design for smaller devices */
+  @media (max-width: 600px) {
+    .story-generate-container {
+      padding: 15px;
+    }
+  
+    .story-form input,
+    .story-form select,
+    .story-form button {
+      width: 100%;
+    }
+  }
+  

@@ -1,6 +1,7 @@
 from src.database.database import db
 
-class StoryGenre(db.Model):
-    __tablename__ = 'story_genre'
-    story_id = db.Column(db.Integer, db.ForeignKey('story.id'), primary_key=True)
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), primary_key=True)
+story_genre = db.Table(
+    'story_genre',
+    db.Column('story_id', db.Integer, db.ForeignKey('story.id'), primary_key=True),
+    db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'), primary_key=True)
+)

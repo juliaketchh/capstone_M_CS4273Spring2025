@@ -1,7 +1,9 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
-import '../styles/App.css'
-import Header from '../components/Header'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+import '../styles/App.css';
+import Header from '../components/Header';
 import CharEdit from '../components/char_edit.jsx';
 import StoryGenerate from '../components/generate.jsx';
 import ReadView from '../components/read_view.jsx';
@@ -17,6 +19,21 @@ function App() {
   const [selectedStoryId, setSelectedStoryId] = useState(null);
   const [storyData, setStoryData] = useState(null);
   const [view, setView] = useState('menu');
+  const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Listen for authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserId(user.uid); // Set the Firebase user ID
+      } else {
+        navigate('/login'); // Redirect to login if not authenticated
+      }
+    });
+
+    return () => unsubscribe(); // Cleanup the listener on unmount
+  }, [navigate]);
 
   useEffect(() => {
     if (view === 'read' && selectedStoryId) {
@@ -58,7 +75,19 @@ function App() {
       )}
 
       {view === 'generate' && (
-        <StoryGenerate onClose={() => setView('menu')} />
+        <StoryGenerate onClose={() => setView('menu')} userId={userId} />
+      )}
+
+      {view === 'read' && storyData && (
+        <ReadView
+          title={storyData.title}
+          content={storyData.content}
+          onClose={() => {
+            setView('menu');
+            setStoryData(null);
+            setSelectedStoryId(null);
+          }}
+        />
       )}
 
       {view === 'read' && storyData && (

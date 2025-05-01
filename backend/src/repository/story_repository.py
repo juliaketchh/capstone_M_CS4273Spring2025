@@ -1,19 +1,64 @@
 from src.database.database import db
 from src.model.story import Story
+from src.model.genre import Genre
+from src.model.story_theme import StoryTheme
+from src.model.story_tone import StoryTone
+from src.model.story_character import StoryCharacter
+from src.model.story_series import StorySeries
 
 class StoryRepository:
     @staticmethod
     def create_story(data):
+        # Create a new Story object
         story = Story(
-            id=data.get("id"),
-            user_id=data["user_id"],
-            title=data["title"],
-            perspective=data["perspective"],
-            content=data["content"],
-            exposition=data.get("exposition"),
+            user_id=data.get("user_id"),
+            title=data.get("title", ""),
+            perspective=data.get("perspective", ""),
+            content=data.get("content", ""), 
+            exposition=data.get("exposition", ""), 
             protagonist_id=data.get("protagonist_id"),
-            image=data.get("image"),
         )
+        
+        # Handle genres
+        genre_names = data.get("genres", [])
+        for genre_name in genre_names:
+            genre = Genre.query.filter_by(genre=genre_name).first()
+            if not genre:
+                genre = Genre(genre=genre_name)
+                db.session.add(genre)
+            story.genres.append(genre)
+
+        # Handle themes
+        themes = data.get("themes", [])
+        for theme_name in themes:
+            theme = StoryTheme(theme=theme_name)
+            story.themes.append(theme)
+
+        # Handle tones
+        tones = data.get("tones", [])
+        for tone_name in tones:
+            tone = StoryTone(tone=tone_name)
+            story.tones.append(tone)
+
+        # Handle characters
+        characters = data.get("characters", [])
+        for character_data in characters:
+            character = StoryCharacter(
+                name=character_data.get("name"),
+                description=character_data.get("description"),
+                age=character_data.get("age"),
+            )
+            story.characters.append(character)
+
+        # Handle series
+        series_data = data.get("series", [])
+        for series_entry in series_data:
+            story_series = StorySeries(
+                series_id=series_entry.get("series_id"),
+                sequence_num=series_entry.get("sequence_num"),
+            )
+            story.series.append(story_series)
+
         db.session.add(story)
         db.session.commit()
         return story
