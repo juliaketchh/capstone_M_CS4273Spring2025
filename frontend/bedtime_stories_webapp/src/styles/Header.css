@@ -4,7 +4,7 @@
     align-items: center;
     padding: 1rem 2rem;
     background-color: #81A4CD;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: inset 0 -15px 15px rgba(0,0,0,0.2);
     position: fixed;
     top: 0;
     left: 0;                 
@@ -12,6 +12,7 @@
     z-index: 1000;
     height: 80px;
     box-sizing: border-box; /* important for padding */
+    
   }
   
   .header-title {
@@ -94,18 +95,12 @@
   
   /* Hamburger icon */
   .hamburger-icon {
-    width: 24px;
-    height: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    color: #ffffff;
     cursor: pointer;
   }
-  
-  .hamburger-icon span {
-    height: 3px;
-    background-color: #000;
-    border-radius: 2px;
+
+  .hamburger-icon:hover{
+    color: #4229b3;
   }
   
   /* Sidebar */
@@ -119,6 +114,12 @@
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0,0,0,0.5);
     z-index: 1000;
+    text-align: left;
+  }
+
+  .sidebar i {
+    margin-right: 10px; 
+    font-size: 18px; 
   }
   
   .sidebar ul {
@@ -137,6 +138,8 @@
     background: none;
     border: none;
     cursor: pointer;
+    width: 100%;
+    
   }
   
   .sidebar button.logout-button {
@@ -145,6 +148,6 @@
   }
   
   .sidebar button.logout-button:hover {
-    color: #ff4c4c;
+    color: #f72323;
   }
   

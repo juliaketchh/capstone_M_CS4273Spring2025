@@ -3,7 +3,7 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background-color: white;
   }
   
   .story-generate-container {
@@ -12,7 +12,7 @@ body {
     width: 90%;
     margin: 50px auto;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(144, 163, 248);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
