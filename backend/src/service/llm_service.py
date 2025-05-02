@@ -7,6 +7,9 @@ class LLMService:
 
     def generate_random_story(self):
         return self.model_service.generate_random_story()
+    
+    def generate_story(self, genre, perspective, tone, protagonist_name, word_count=300):
+        return self.model_service.generate_story(genre, perspective, tone, protagonist_name, word_count)
 
 # Factory function to create the appropriate LLM service
 def create_llm_service(model_name):

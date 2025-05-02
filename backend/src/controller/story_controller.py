@@ -16,6 +16,47 @@ def generate_random_story():
 def test():
     return success_response("test")
 
+@story_bp.route("/generate", methods=["POST"])
+def generate_story():
+    data = request.json
+    try:
+        # Validate input data
+        required_fields = ["genre", "perspective", "tone", "protagonist_name", "user_id"]
+        for field in required_fields:
+            if field not in data or not data[field]:
+                return error_response(f"Missing required field: {field}", status_code=400)
+
+        # Generate the story text using the LLM service
+        title, content, exposition = llm_service.generate_story(
+            genre=data.get("genre"),
+            perspective=data.get("perspective"),
+            tone=data.get("tone"),
+            protagonist_name=data.get("protagonist_name"),
+            word_count=data.get("word_count", 300)
+        )
+
+        # Add the generated story to the data
+        data["title"] = title
+        data["content"] = content
+        data["exposition"] = exposition
+
+        # Insert the story into the database
+        story = story_service.create_story(data)
+        if not story:
+            return error_response("Failed to generate story", status_code=500)
+
+        # Create the story thumbnail
+        thumbnail_path = story_service.create_story_thumbnail(story.id)
+        if not thumbnail_path:
+            return error_response("Failed to create thumbnail", status_code=500)
+        story_service.update_story_thumbnail(story.id)
+
+        # Return the generated story object
+        return success_response(story.to_dict(), message="Story generated", status_code=201)
+    except Exception as e:
+        print(f"Error generating story: {e}")  # Log the error for debugging
+        return error_response(f"An error occurred: {str(e)}", status_code=500)
+
 @story_bp.route("/", methods=["POST"])
 def create_story():
     data = request.json
@@ -24,17 +65,25 @@ def create_story():
 
 @story_bp.route("/user/<user_id>", methods=["GET"])
 def get_user_stories(user_id):
-    stories = story_service.get_user_stories(user_id)
+    stories:list = story_service.get_user_stories(user_id)
     if not stories:
         return error_response("No stories found", status_code=404)
-    return success_response([story.to_dict() for story in stories])
+    stories = [story.to_dict() for story in stories]
+
+    for story in stories:
+        story["thumbnail"] = story_service.get_thumbnail_url(story["id"])
+    return success_response(stories)
 
 @story_bp.route("/<story_id>", methods=["GET"])
 def get_story(story_id):
     story = story_service.get_story(story_id)
-    if story:
-        return success_response(story.to_dict())
-    return error_response("Story not found", status_code=404)
+    if not story:
+        return error_response("Story not found", status_code=404)
+    
+    story = story.to_dict()
+    story["thumbnail"] = story_service.get_thumbnail_url(story["id"])
+
+    return success_response(story)
 
 @story_bp.route("/<story_id>", methods=["PUT"])
 def update_story(story_id):

@@ -1,0 +1,39 @@
+.read-view-container {
+    background-color: #F5E6D0; /* warm parchment-style tone */
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    color: #333;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    font-family: 'Georgia', serif;
+  }
+  
+  .story-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2B2D42;
+  }
+  
+  .story-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    margin-bottom: 2rem;
+  }
+  
+  .done-button {
+    background-color: #A76D60;
+    color: white;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .done-button:hover {
+    background-color: #8b574c;
+  }
+  
